@@ -10,10 +10,9 @@
 #######
 */
 
-let i = 0;
-let e = ""
+let e = "#"
 
-while(i < 7){
-    console.log(e += "#")
-    i++;
+while(e.length < 7){
+    console.log(e)
+    e += "#";
 }

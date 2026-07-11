@@ -16,18 +16,21 @@ Passing this string to console.log should show something like this:
 # # # #
 */
 
+
+const promptSync = require('prompt-sync')();
+
+let size = Number(promptSync("Enter Size: "));
 let board = "";
 
-for(let i = 0; i < 8; i++){
-    for(let e =0; e < 8; e++){
+for(let i = 0; i < size; i++){
+    for(let e = 0; e < size; e++){
         if(i % 2 == 0){
             board += (e % 2 === 0) ? " " : "#"
         }else{
             board += (e % 2 === 0) ? "#" : " "
         }
-        
     }
     board += "\n";
 }
 
-console.log(board)
+console.log(board);
