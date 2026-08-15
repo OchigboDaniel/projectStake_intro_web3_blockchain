@@ -5,7 +5,7 @@
   "main": "loopingTriangle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node flattening.js"
+    "start": "node your_own_loop.js"
   },
   "keywords": [],
   "author": "",
