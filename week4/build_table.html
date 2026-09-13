@@ -1,0 +1,54 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  // Your code here
+  let table = document.createElement("table");
+  let headerRow = document.createElement("tr");
+
+
+  // get the keys from mountain
+  let keys = Object.keys(MOUNTAINS[0]);
+
+  function fillRow(row, tag, values) {
+    for (const value of values) {
+      let cell = document.createElement(tag);
+      cell.textContent = value;
+      row.append(cell);
+    }
+    return row;
+}
+/*
+  for (const key of keys) {
+        let th = document.createElement("th");
+        th.textContent = key;  
+        headerRow.append(th);        
+  }
+*/
+  // create the table header using the fillRow function
+  table.appendChild(fillRow(headerRow,"th",keys));
+  // Create the table row
+  document.getElementById("mountains").appendChild(table);
+  
+  // create the table row using the fillRow function
+  let rowList = [];
+  for (const MOUNTAIN of MOUNTAINS) {
+    let row = document.createElement("tr");   // create a fresh row each time
+    let rowValueList = Object.values(MOUNTAIN);
+    table.appendChild(fillRow(row, "td", rowValueList));
+}
+
+
+
+</script>
