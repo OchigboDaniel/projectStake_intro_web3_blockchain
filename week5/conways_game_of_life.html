@@ -1,0 +1,85 @@
+<div id="grid"></div>
+<button id="next">Next generation</button>
+
+<script>
+  const WIDTH = 10;
+  const HEIGHT = 10;
+
+  // Initialize a random grid
+  let grid = [];
+  for (let y = 0; y < HEIGHT; y++) {
+    let row = [];
+    for (let x = 0; x < WIDTH; x++) {
+      row.push(Math.random() < 0.3);
+    }
+    grid.push(row);
+  }
+
+  let gridDiv = document.getElementById("grid");
+  let checkboxes = [];
+
+  function renderGrid() {
+    gridDiv.textContent = ""; // clear previous render
+    checkboxes = [];
+    for (let y = 0; y < HEIGHT; y++) {
+      let rowBoxes = [];
+      for (let x = 0; x < WIDTH; x++) {
+        let box = document.createElement("input");
+        box.type = "checkbox";
+        box.checked = grid[y][x];
+        gridDiv.appendChild(box);
+        rowBoxes.push(box);
+      }
+      gridDiv.appendChild(document.createElement("br"));
+      checkboxes.push(rowBoxes);
+    }
+  }
+
+  function readGridFromCheckboxes() {
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        grid[y][x] = checkboxes[y][x].checked;
+      }
+    }
+  }
+
+  function countLiveNeighbors(oldGrid, x, y) {
+    let count = 0;
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        if (dx == 0 && dy == 0) continue; // skip the cell itself
+        let ny = y + dy, nx = x + dx;
+        if (ny >= 0 && ny < HEIGHT && nx >= 0 && nx < WIDTH) {
+          if (oldGrid[ny][nx]) count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  function nextGeneration() {
+    readGridFromCheckboxes(); // sync any manual edits first
+    let oldGrid = grid.map(row => row.slice()); // copy, so updates don't affect neighbor counts
+    let newGrid = [];
+    for (let y = 0; y < HEIGHT; y++) {
+      let newRow = [];
+      for (let x = 0; x < WIDTH; x++) {
+        let alive = oldGrid[y][x];
+        let neighbors = countLiveNeighbors(oldGrid, x, y);
+        if (alive && (neighbors < 2 || neighbors > 3)) {
+          newRow.push(false); // dies
+        } else if (!alive && neighbors == 3) {
+          newRow.push(true); // becomes alive
+        } else {
+          newRow.push(alive); // stays the same
+        }
+      }
+      newGrid.push(newRow);
+    }
+    grid = newGrid;
+    renderGrid();
+  }
+
+  renderGrid();
+  document.getElementById("next").addEventListener("click", nextGeneration);
+</script>

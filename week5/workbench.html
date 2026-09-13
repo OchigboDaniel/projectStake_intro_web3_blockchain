@@ -1,0 +1,18 @@
+<textarea id="code">return "hi";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+  // Your code here.
+  document.getElementById("button").addEventListener("click", () => {
+    let code = document.getElementById("code").value;
+    let output = document.getElementById("output");
+    try {
+      let result = Function(code)();
+      output.textContent = String(result);
+    } catch (e) {
+      output.textContent = "Error: " + e;
+    }
+  });
+
+</script>
