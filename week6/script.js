@@ -44,9 +44,6 @@ const state = {
   }
 
   async function loadGasPrices() {
-    // NOTE: swap in your own Etherscan API key here.
-    // Sign up free at https://etherscan.io/myapikey
-    const ETHERSCAN_API_KEY = 'YOUR_API_KEY_HERE';
 
     try {
       const res = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${ETHERSCAN_API_KEY}`);
