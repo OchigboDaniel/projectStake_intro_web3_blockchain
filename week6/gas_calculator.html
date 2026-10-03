@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./script.css">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <h2>Gas fee calculator</h2>
+            <p>Live network prices, estimated in ETH and USD</p>
+        </header>
+
+        <div class="tiers" id="tiers">
+      <div class="tier selected" data-tier="safe" style="--tier-color: var(--safe)">
+        <div class="tier-label">Safe</div>
+        <div class="tier-gauge"><div class="tier-gauge-fill" style="width: 40%"></div></div>
+        <div class="tier-value mono" id="safe-value">—<span class="tier-unit">gwei</span></div>
+      </div>
+      <div class="tier" data-tier="standard" style="--tier-color: var(--standard)">
+        <div class="tier-label">Standard</div>
+        <div class="tier-gauge"><div class="tier-gauge-fill" style="width: 65%"></div></div>
+        <div class="tier-value mono" id="standard-value">—<span class="tier-unit">gwei</span></div>
+      </div>
+      <div class="tier" data-tier="fast" style="--tier-color: var(--fast)">
+        <div class="tier-label">Fast</div>
+        <div class="tier-gauge"><div class="tier-gauge-fill" style="width: 100%"></div></div>
+        <div class="tier-value mono" id="fast-value">—<span class="tier-unit">gwei</span></div>
+      </div>
+    </div>
+    
+        <div class="divider"></div>
+
+        <div>
+            <div class="field">
+                <label for="gas-limit">Gas limit</label>
+                <input type="number" id="gas-limit" value="21000">
+            </div>
+            <div></div>
+            <div class="field">
+                <label for="eth-price">ETH price (USD)</label>
+                <input type="number" id="eth-price">
+            </div>
+            <div></div>
+
+        </div>
+        <div class="result">
+            <div class="result-label">Estimated cost<br><span id="selected-tier-label"
+                    style="color: var(--text-tertiary); font-size: 11px;">Safe tier</span></div>
+            <div class="result-values">
+                <div class="result-eth mono" id="result-eth">0.000042 ETH</div>
+                <div class="result-usd mono" id="result-usd">$0.11</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
